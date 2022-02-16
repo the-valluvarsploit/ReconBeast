@@ -1,11 +1,11 @@
 # ReconBeast
-ReconBeast is a python wrapper around subdomain enumeration tools.
+ReconBeast is a subdomain enumeration tool. This tool is a wrapper around popular subdomain enumeration tools.
 
 ## Features
-Subdomain Enumeration
-Subdomain Probing
-Store results in a Database
-Logs
+Subdomain Enumeration 
+Subdomain Probing 
+Store results in a Database file 
+Store logs in a logs file 
 
 ## Setup
 ```bash
