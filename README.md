@@ -2,6 +2,7 @@
 
 ## Setup
 ```bash
+git clone https://github.com/the-valluvarsploit/ReconBeast.git
 cd reconbeast/
 pip install -r requirements.txt
 ```
