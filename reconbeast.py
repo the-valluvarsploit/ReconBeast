@@ -22,7 +22,14 @@ os.makedirs(f"{temp_path}",exist_ok=True)
 subdomains_list = []
 
 def print_banner():
-    print("""""")
+    print("""
+██████╗ ███████╗ ██████╗ ██████╗ ███╗   ██╗██████╗ ███████╗ █████╗ ███████╗████████╗
+██╔══██╗██╔════╝██╔════╝██╔═══██╗████╗  ██║██╔══██╗██╔════╝██╔══██╗██╔════╝╚══██╔══╝
+██████╔╝█████╗  ██║     ██║   ██║██╔██╗ ██║██████╔╝█████╗  ███████║███████╗   ██║   
+██╔══██╗██╔══╝  ██║     ██║   ██║██║╚██╗██║██╔══██╗██╔══╝  ██╔══██║╚════██║   ██║   
+██║  ██║███████╗╚██████╗╚██████╔╝██║ ╚████║██████╔╝███████╗██║  ██║███████║   ██║   
+╚═╝  ╚═╝╚══════╝ ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝╚═════╝ ╚══════╝╚═╝  ╚═╝╚══════╝   ╚═╝   
+    """)
     # print("\033[1mDeveloped by ValluvarSploit\033[0m\n")
 
 def get_arguments():
@@ -35,6 +42,7 @@ def get_arguments():
     parser.add_argument('-db', '--database', default="reconbeast.db", help="Output database filename")
     args = parser.parse_args()
     if not (args.domain or args.domain_file):
+        print_banner()
         parser.print_help()
         exit(1)
     return args
@@ -56,7 +64,7 @@ LOG = get_logger()
 def setup_database():
     if not os.path.exists(database): 
         LOG.info("Database setup has started")
-        print("[*] Setting Up Database...")
+        print("\033[33m[*] Setting Up Database...\033[0m")
         conn = sqlite3.connect(os.path.join(os.path.dirname(__file__), database))
         conn.execute("CREATE TABLE IF NOT EXISTS domains (domain text unique)")
         conn.execute("CREATE TABLE IF NOT EXISTS rawsubdomains (subdomain text unique)")
@@ -73,11 +81,11 @@ def setup_database():
         )""")
         conn.commit()
         LOG.info(f"Database setup has completed {database}") 
-        print("[*] Setup Completed!")
+        print("\033[33m[*] Setup Completed!\033[0m")
     else:
         conn = sqlite3.connect(os.path.join(os.path.dirname(__file__), database))
         LOG.info(f"Database connection successful {database}")
-        print("[*] Database Connected!")
+        print("\033[33m[*] Database Connected!\033[0m")
 
     return conn
 
@@ -170,9 +178,9 @@ def start_subdomain_scan(conn, domains):
         # if not os.path.isdir(f"{temp_path}/{domain}"):
         #     os.makedirs(f"{temp_path}/{domain}",exist_ok=True)
         do_subdomain_scan(conn, "findomain", domain)
-        # do_subdomain_scan(conn, "subfinder", domain)
-        # do_subdomain_scan(conn, "assetfinder", domain)
-        # do_subdomain_scan(conn, "amass", domain)
+        do_subdomain_scan(conn, "subfinder", domain)
+        do_subdomain_scan(conn, "assetfinder", domain)
+        do_subdomain_scan(conn, "amass", domain)
         if ARGS.chaos_key:
             do_subdomain_scan(conn, "chaos_client", domain)
         

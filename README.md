@@ -1,4 +1,11 @@
 # ReconBeast
+ReconBeast is a python wrapper around subdomain enumeration tools.
+
+## Features
+Subdomain Enumeration
+Subdomain Probing
+Store results in a Database
+Logs
 
 ## Setup
 ```bash
@@ -11,3 +18,5 @@ pip install -r requirements.txt
 ```bash
 python reconbeast.py -d example.com
 ```
+
+<img src="assets/images/help.png">ReconBeast</img>
