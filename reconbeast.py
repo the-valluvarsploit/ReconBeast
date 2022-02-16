@@ -158,6 +158,7 @@ def do_subdomain_scan(conn, tool, target):
     process_import_temp_files(conn, tool, target)
 
 def scrape_rapiddns(target):
+    print("\033[33m[*] RapidDNS Scan\033[0m")
     response = requests.get("https://rapiddns.io/subdomain/"+target+"?full=1#result")
     soup = BeautifulSoup(response.content, "html.parser")
     table = soup.find('table')
@@ -250,7 +251,7 @@ def main():
         do_subdomain_probe(CONN, subdomains_to_probe)
         # do_subdomain_probe(subdomains_to_probe)
         CONSOLE.print("[yellow][*] Probing Completed!")
-        # # connection.close()
+        CONN.close()
 
 if __name__ == "__main__":
     main()
