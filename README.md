@@ -1,5 +1,5 @@
 # ReconBeast
-ReconBeast is a subdomain enumeration tool. This tool is a wrapper around popular subdomain enumeration tools.
+ReconBeast is a subdomain enumeration tool. This is a wrapper around popular subdomain enumeration tools.
 
 ## Features
 Subdomain Enumeration 
